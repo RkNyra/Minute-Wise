@@ -4,20 +4,35 @@
 {% block styles %}
 
 {{ super() }}
-<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
 <link href="https://fonts.googleapis.com/css?family=Baloo+Bhai|Comfortaa|Courgette|Katibeh|Philosopher|Tangerine|ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{url_for('static',filename='css/custom.css')}}">
 
 {% endblock %}
 
 
-<!-- content block  -->
+
+<!-- pitches block  -->
 {% block content %}
 <div class="container">
-<div class="jumbotron text-center">
-    <h2> Every Minute Counts </h2>
-    <h4>so...</h4>
-    <h2 class="display-1"> Be Minute-Wise!</h2>
-</div>
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Pitch Category </h4>
+      <p class="card-text">For every minute you smile, you get a whole 60-seconds of happiness!</p>
+      <p>Contributer Username</p>
+
+      <!-- Like/Dislike Buttons -->
+      <div class="vote">
+        
+        <!-- up-vote -->
+       <a href="#"> <img src="{{url_for('static', filename='images/Like.png')}}" alt="Up-Vote"></a>
+        
+        <!-- down-vote -->
+        <a href="#"><img src="{{url_for('static',filename='images/Dislike.png')}}" alt="Down-Vote"></a>
+      
+      </div>
+
+    </div>
+  </div>
 </div>
 
 {% endblock %}

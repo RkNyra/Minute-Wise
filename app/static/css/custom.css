@@ -1,13 +1,42 @@
 body{
-    background-color: black;
+    background-color: 	#202020;
 }
-.jumbotron, .navStyle{
-    background-color: #fbedbe;
+.navStyle{
     font-family: 'Philosopher', sans-serif;
+    
 }
+
+.navbar-expand-lg .navbar-brand {
+    color: white;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    color: white;
+}
+
+.jumbotron{
+    background-color: #fbedbe;
+    font-family: 'Tangerine', cursive;
+    color: #333;
+    margin-top: 3vh;
+}
+
 
 .card {
     background-color: #fbedbe;
-    font-family: 'Tangerine', cursive;
-    font-size: 15vh;
+    color: #333;
+    font-family: 'Philosopher', sans-serif;
+    font-size: 4vh;
+}
+
+.vote{
+    width: 15%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.vote img{
+    height: 40px;
+    width: 40px;
+
 }

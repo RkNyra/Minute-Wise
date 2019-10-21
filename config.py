@@ -20,4 +20,5 @@ class DevConfig(Config):
     Args:
         Config: The parent config class with General configs settings
     '''
+    
     DEBUG = True
