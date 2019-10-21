@@ -14,3 +14,4 @@ app.config.from_object(DevConfig)
 bootstrap.init_app(app)
 
 from .main import views
+from .main import errors
