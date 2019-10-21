@@ -18,7 +18,7 @@ body{
     background-color: #fbedbe;
     font-family: 'Tangerine', cursive;
     color: #333;
-    margin-top: 3vh;
+    margin-top: 5vh;
 }
 
 
@@ -27,6 +27,7 @@ body{
     color: #333;
     font-family: 'Philosopher', sans-serif;
     font-size: 4vh;
+    margin-bottom: 7vh;
 }
 
 .vote{
@@ -39,4 +40,12 @@ body{
     height: 40px;
     width: 40px;
 
+}
+
+.whiteForm {
+    background-color: #fbedbe;
+    padding: 3vh;
+    margin-top: 3vh;
+    margin-bottom: 7vh;
+    border-radius: 2%;
 }

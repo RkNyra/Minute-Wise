@@ -4,8 +4,8 @@ from wtforms.validators import Required,Email,Length,EqualTo
 from wtforms import ValidationError
 
 class SignUpForm(FlaskForm):
-    username = StringField('Enter your preferred username', validators=[Required()])
-    email = StringField('Enter your email address', validators=[Required(), Email()])
-    password = PasswordField('Enter you referred password', validators=[Required(), EqualTo('confirm_password',message = 'Passwords must match')])
-    confirm_passowrd = PasswordField('Confirm password', validators=[Required()])
+    username = StringField('', validators=[Required()], render_kw={"placeholder": "Enter your preferred username"})
+    email = StringField('', validators=[Required(), Email()], render_kw={"placeholder": "Enter your email address"})
+    password = PasswordField('', validators=[Required(), EqualTo('confirm_password',message = 'Passwords must match')], render_kw={"placeholder": "Enter your referred password"})
+    confirm_passowrd = PasswordField('', validators=[Required()], render_kw={"placeholder": "Confirm password"})
     submit = SubmitField('Sign Up')
