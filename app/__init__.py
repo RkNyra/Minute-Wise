@@ -5,7 +5,7 @@ from flask_bootstrap import Bootstrap
 bootstrap = Bootstrap()
 
 # Initializing the app
-app = Flask(__name__)
+app = Flask(__name__,instance_relative_config = True)
 
 # Setting up configs
 app.config.from_object(DevConfig)

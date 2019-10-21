@@ -2,7 +2,7 @@ class Config:
     '''
     General configurations (configs) parent class
     '''
-    pass
+    SECRET_KEY='minuteWise123'
 
 class ProdConfig(Config):
     '''
