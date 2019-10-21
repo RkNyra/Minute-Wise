@@ -45,7 +45,7 @@
     <ul class="navbar-nav ml-auto">
 
       <!-- Share your pitch -->
-      <li class="nav-item"><a class="nav-link" href="{{url_for('auth.signUp', _anchor='regForm')}}"> Share your Minute-Wise pitch! </a></li>
+      <li class="nav-item"><a class="nav-link" href="{{url_for('main.sharePitch', _anchor='shareForm')}}"> Share your Minute-Wise pitch! </a></li>
 
       <!-- Sign Up -->
       <li class="nav-item"><a class="nav-link" href="{{url_for('auth.signUp', _anchor='regForm')}}"> Sign Up </a></li>
@@ -64,6 +64,6 @@
     <h1>so...</h1>
     <p class="display-4">Be Minute -Wise!</p>
     <hr>
-    <h2> <a href="/" >Share your one-minute pitch here</a></h2>
+    <h2> <a href="{{url_for('main.sharePitch', _anchor='shareForm')}}" >Share your one-minute pitch below...</a></h2>
   </div>
 </div>
