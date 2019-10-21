@@ -1,0 +1,13 @@
+body{
+    background-color: black;
+}
+.jumbotron, .navStyle{
+    background-color: #fbedbe;
+    font-family: 'Philosopher', sans-serif;
+}
+
+.card {
+    background-color: #fbedbe;
+    font-family: 'Tangerine', cursive;
+    font-size: 15vh;
+}
