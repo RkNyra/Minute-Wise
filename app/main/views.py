@@ -1,10 +1,10 @@
-from flask import render_template
-from app import app
+from flask import render_template, redirect, url_for
+from . import main
 from .forms import SignUpForm, SignInForm
 
 # Views
 # Home Page
-@app.route('/')
+@main.route('/')
 def index():
     '''
     View root page function that returns the index page and its details
@@ -14,7 +14,7 @@ def index():
     return render_template('index.html', title=title)
 
 # Sign Up Page/Form
-@app.route('/signUp')
+@main.route('/signUp')
 def signUp():
     form = SignUpForm()
     
@@ -24,7 +24,7 @@ def signUp():
     return render_template('signUp.html', SignUpForm=form)
 
 # Sign In Page/Form
-@app.route('/signIn')
+@main.route('/signIn')
 def signIn():
     formLogin = SignInForm()
     
