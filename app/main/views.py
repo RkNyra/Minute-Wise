@@ -16,7 +16,8 @@ def index():
     return render_template('index.html', title=title)
 
 # Share your pitch form
-@main.route('/sharePitch')
+@main.route('/sharePitch', methods=['GET','POST'])
+@login_required
 def sharePitch():
     form = SharePitchForm()
     
