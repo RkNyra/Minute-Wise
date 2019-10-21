@@ -9,3 +9,10 @@ class SignUpForm(FlaskForm):
     password = PasswordField('', validators=[Required(), EqualTo('confirm_password',message = 'Passwords must match')], render_kw={"placeholder": "Enter your referred password"})
     confirm_passowrd = PasswordField('', validators=[Required()], render_kw={"placeholder": "Confirm password"})
     submit = SubmitField('Sign Up')
+    
+    
+class SignInForm(FlaskForm):
+    email = StringField('', validators=[Required(), Email()], render_kw={"placeholder": "Enter your email address"})
+    password = PasswordField('', validators=[Required()], render_kw={"placeholder": "Enter your password"})
+    remember = BooleanField('Keep me signed in')
+    submit = SubmitField('Sign In')

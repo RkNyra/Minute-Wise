@@ -1,6 +1,6 @@
 from flask import render_template
 from app import app
-from .forms import SignUpForm
+from .forms import SignUpForm, SignInForm
 
 # Views
 # Home Page
@@ -22,3 +22,13 @@ def signUp():
     View sign_up page function that returns the sign_up page and sign_up form
     '''
     return render_template('signUp.html', SignUpForm=form)
+
+# Sign In Page/Form
+@app.route('/signIn')
+def signIn():
+    formLogin = SignInForm()
+    
+    '''
+    View sign_in page function that returns the sign_in page and sign_in form
+    '''
+    return render_template('signIn.html', SignInForm=formLogin)
