@@ -5,6 +5,7 @@ class Config:
     General configurations (configs) parent class
     '''
     SECRET_KEY='minuteWise123'
+    SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://rknyra:rknyra7@localhost/pitches'
 
 class ProdConfig(Config):
     '''
