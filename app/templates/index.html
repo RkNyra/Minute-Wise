@@ -1,0 +1,23 @@
+{% extends 'base.html'%}
+
+<!-- styles block -->
+{% block styles %}
+
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+<link href="https://fonts.googleapis.com/css?family=Baloo+Bhai|Comfortaa|Courgette|Katibeh|Philosopher|Tangerine|ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+
+{% endblock %}
+
+
+<!-- content block  -->
+{% block content %}
+<div class="container">
+<div class="jumbotron text-center">
+    <h2> Every Minute Counts </h2>
+    <h4>so...</h4>
+    <h2 class="display-1"> Be Minute-Wise!</h2>
+</div>
+</div>
+
+{% endblock %}
