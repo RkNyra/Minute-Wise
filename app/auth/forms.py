@@ -30,5 +30,5 @@ class SignInForm(FlaskForm):
     '''
     username = StringField('', validators=[Required()], render_kw={"placeholder": "Enter your username"})
     password = PasswordField('', validators=[Required()], render_kw={"placeholder": "Enter your password"})
-    remember = BooleanField('Keep me signed in', validators=[Required()])
+    remember = BooleanField('Keep me signed in')
     submit = SubmitField('Sign In')

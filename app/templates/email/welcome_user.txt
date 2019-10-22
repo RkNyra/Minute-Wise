@@ -1,0 +1,4 @@
+Bonjour {{user.username}}
+Welcome to Minute-Wise!
+We have just seen you have signed up for our application.
+Welcome to the Minute-Wise family and enjoy the short and sweet one-minute pitches on the application.

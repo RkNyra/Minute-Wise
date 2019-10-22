@@ -4,6 +4,7 @@ from . import auth
 from .forms import SignUpForm, SignInForm
 from ..models import User
 from .. import db
+from ..email import mail_message
 
 
 # Sign Up Page/Form
@@ -23,6 +24,8 @@ def signUp():
         user = User(username = form.username.data, email = form.email.data, password = form.password.data)
         db.session.add(user)
         db.session.commit()
+        
+        mail_message("Willkommen to Minute-Wise","email/welcome_user",user.email,user=user)
         
         flash('Sign-up successful! Sign in below', 'success')
         return redirect(url_for('auth.signIn')) 
