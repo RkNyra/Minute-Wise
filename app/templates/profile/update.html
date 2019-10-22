@@ -1,12 +1,155 @@
-{% extends 'base.html' %} 
-{% import 'bootstrap/wtf.html' as wtf %} 
+
+{% extends 'bootstrap/base.html'%}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+<!--Styles/css block  -->
+{% block styles %}
+{{ super() }}
+<link
+  href="https://fonts.googleapis.com/css?family=Baloo+Bhai|Comfortaa|Courgette|Katibeh|Philosopher|Tangerine|ZCOOL+XiaoWei&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="{{url_for('static',filename='css/custom.css')}}" />
+{% endblock %} 
 
 {% block content %}
+
+<!-- NAV BAR -->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark navStyle">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Minute-Wise</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Pitch Categories
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Hot & Trending</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Pick up lines :) </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Love & Life</a>
+          </div>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        {% if current_user.is_authenticated %}
+
+        <!-- Share your pitch -->
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="{{url_for('main.sharePitch',_anchor='shareForm')}}"
+          >
+            Share your Minute-Wise pitch!
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="{{url_for('main.profile',usrname=current_user.username)}}"
+          >
+            {{ current_user.username }}
+          </a>
+        </li>
+
+        <!-- sign out -->
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('auth.logOut') }}">Sign Out</a>
+        </li>
+        {% else %}
+
+        <!-- Share your pitch -->
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="{{url_for('main.sharePitch', _anchor='shareForm')}}"
+          >
+            Share your Minute-Wise pitch!
+          </a>
+        </li>
+
+        <!-- Sign Up -->
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="{{url_for('auth.signUp', _anchor='regForm')}}"
+          >
+            Sign Up
+          </a>
+        </li>
+
+        <!-- Sign In -->
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="{{url_for('auth.signIn', _anchor='loginForm')}}"
+          >
+            Sign In
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-8 whiteForm" id="EditProfile">
+  <div class="jumbotron">
+    <div class="row profileStyle">
+
+      <div class="col-md-4"> 
+      <!-- prof-pic -->
+          
+          {% if user.profile_pic_path %}
+          <img
+            src="{{url_for('static',filename=user.profile_pic_path)}}"
+            alt="prof-pic"
+            class="img-thumbnail"
+          />
+          {% else %}
+          <img class="img-thumbnail" style="background-color: transparent; border: none;" src="{{url_for('static',filename='images/defaultProfPic.png')}}" alt="Prof Pic">
+          {% endif %}
+      </div>
+
+<!-- bio update form -->
+
+    <div class="col-5 whiteForm" id="EditProfile">
+        <h4>{{ user.username | capitalize }}</h4>
       {{ wtf.quick_form(profEditForm) }}
+    </div>
+
     </div>
   </div>
 </div>
+
 {% endblock %}

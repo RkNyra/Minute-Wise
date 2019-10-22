@@ -28,7 +28,7 @@ def sharePitch():
     return render_template('/new_pitch.html', SharePitchForm=form)
 
 # User profile
-@main.route('/user<usrname>')
+@main.route('/user/<usrname>')
 def profile(usrname):
     user = User.query.filter_by(username = usrname).first()
     
@@ -37,13 +37,28 @@ def profile(usrname):
     
     return render_template('/profile/profile.html',user=user)
 
-# Update Profile
-@main.route('/user/<uname>/update', methods=['GET','POST'])
-@login_required
-def update_profile(uname):
+
+
+# Redirect to update profile page
+@main.route('/update/<usrname>')
+def goToUpdate(usrname):
     
     form = UpdateProfile()
-    user = User.query.filter_by(username = uname).first()
+    user = User.query.filter_by(username = usrname).first()
+    
+    if user is None:
+        abort(404)
+    
+    return render_template('/profile/update.html',user=user,profEditForm = form)
+
+
+# Update Profile
+@main.route('/update/<usrname>', methods=['GET','POST'])
+@login_required
+def update_profile(usrname):
+    
+    form = UpdateProfile()
+    user = User.query.filter_by(username = usrname).first()
     if user is None:
         abort(404)
     if form.validate_on_submit():
@@ -52,5 +67,5 @@ def update_profile(uname):
         db.session.add(user)
         db.session.commit()
         
-        return redirect(url_for('.profile', uname=user.username))
-    return render_template('profile/update.html', profEditForm = form)
+        return redirect(url_for('.profile', usrname=user.username))
+    return render_template('/profile/update.html', profEditForm = form)

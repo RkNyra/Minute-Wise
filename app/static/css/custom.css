@@ -72,3 +72,6 @@ body{
     border-radius: 3%;
     flex-direction: row;
     }
+.userBio{
+    font-size: 3vh;
+}

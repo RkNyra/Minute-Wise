@@ -1,6 +1,6 @@
-<!-- {% extends 'bootstrap/base.html'%}
+{% extends 'bootstrap/base.html'%}
 
-<!-Styles/css block  -->
+<!--Styles/css block  -->
 {% block styles %}
 {{ super() }}
 <link
@@ -8,7 +8,9 @@
   rel="stylesheet"
 />
 <link rel="stylesheet" href="{{url_for('static',filename='css/custom.css')}}" />
-{% endblock %} {% block content %}
+{% endblock %} 
+
+{% block content %}
 
 <!-- NAV BAR -->
 
@@ -125,7 +127,7 @@
 
       <div class="col-md-4"> 
       <!-- prof-pic -->
-          <h4>{{ user.username | capitalize }}</h4>
+          
           {% if user.profile_pic_path %}
           <img
             src="{{url_for('static',filename=user.profile_pic_path)}}"
@@ -133,11 +135,11 @@
             class="img-thumbnail"
           />
           {% else %}
-          <p>No Profile Pic</p>
+          <img class="img-thumbnail" style="background-color: transparent; border: none;" src="{{url_for('static',filename='images/defaultProfPic.png')}}" alt="Prof Pic">
           {% endif %}
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-4 userBio">
         <!-- usrname -->
         <h4>{{ user.username | capitalize }}</h4>
         <hr>
@@ -145,13 +147,13 @@
       {% if user.bio %}
       <p>{{ user.bio }}</p>
       {% else %}
-      <p>{{ user.username }} has no bio</p>
+      <p>{{ user.username }} has no bio yet</p>
       {% endif %}
       <hr>
        <!-- edit profile -->
        {% if user == current_user %}
-       <a href="{{url_for('main.update_profile',uname=user.username)}}"
-         >Update Profile</a
+       <a href="{{url_for('main.goToUpdate',usrname=user.username)}}"
+         >Edit my profile</a
        >
 
        {% endif %}
@@ -163,4 +165,4 @@
   </div>
 </div>
 
-{% endblock %} -->
+{% endblock %}
