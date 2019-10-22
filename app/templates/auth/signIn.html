@@ -8,7 +8,17 @@
     <div class="row justify-content-center">
 
         <div class="col-5 whiteForm" id="loginForm">
+        <!-- flash msg -->
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>    
+        {{ message }}
+        </div>
+        {% endfor %}
+
+        <!-- Sign in form -->
         {{ wtf.quick_form(SignInForm)}}
+        <p>Don't have an account yet? <a href="{{url_for('auth.signUp')}}">Sign Up here</a> </p>
         </div>
     </div>
 
