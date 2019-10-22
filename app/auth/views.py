@@ -7,18 +7,26 @@ from .. import db
 
 
 # Sign Up Page/Form
-@auth.route('/signUp')
-def signUp():
-    form = SignUpForm()
-    
+@auth.route('/signUp', methods=["GET","POST"])
+def signUp():   
     '''
     View sign_up page function that returns the sign_up page and sign_up form
     '''
-    if form.validate_on_submit():
+    form = SignUpForm()
+    if request.method == "POST":
+        print(request.form.get('confirm_password'))
+
+    if form.validate_on_submit():  
+        print('form')
+
+     
         user = User(username = form.username.data, email = form.email.data, password = form.password.data)
         db.session.add(user)
         db.session.commit()
+        
         return redirect(url_for('auth.signIn'))
+        flash(f'Sign-up successful!')
+    
     
     title = "New Pitcher"
     return render_template('auth/signUp.html', SignUpForm=form, title=title)

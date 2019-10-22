@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField,PasswordField,BooleanField,SubmitField
 from wtforms.validators import Required,Email,Length,EqualTo
 from wtforms import ValidationError
+from ..models import User
 
 class SignUpForm(FlaskForm):
     '''
@@ -10,7 +11,7 @@ class SignUpForm(FlaskForm):
     username = StringField('', validators=[Required()], render_kw={"placeholder": "Enter your preferred username"})
     email = StringField('', validators=[Required(), Email()], render_kw={"placeholder": "Enter your email address"})
     password = PasswordField('', validators=[Required(), EqualTo('confirm_password',message = 'Passwords must match')], render_kw={"placeholder": "Enter your referred password"})
-    confirm_passowrd = PasswordField('', validators=[Required()], render_kw={"placeholder": "Confirm password"})
+    confirm_password = PasswordField('', validators=[Required()], render_kw={"placeholder": "Confirm password"})
     submit = SubmitField('Sign Up')
     
     # Custom validators
@@ -29,5 +30,5 @@ class SignInForm(FlaskForm):
     '''
     username = StringField('', validators=[Required()], render_kw={"placeholder": "Enter your username"})
     password = PasswordField('', validators=[Required()], render_kw={"placeholder": "Enter your password"})
-    remember = BooleanField('Keep me signed in')
+    remember = BooleanField('Keep me signed in', validators=[Required()])
     submit = SubmitField('Sign In')
