@@ -24,8 +24,9 @@ def signUp():
         db.session.add(user)
         db.session.commit()
         
-        return redirect(url_for('auth.signIn'))
-        flash(f'Sign-up successful!')
+        flash('Sign-up successful! Sign in below', 'success')
+        return redirect(url_for('auth.signIn')) 
+        
     
     
     title = "New Pitcher"
