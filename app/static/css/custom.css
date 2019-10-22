@@ -75,3 +75,18 @@ body{
 .userBio{
     font-size: 3vh;
 }
+
+.uploadProfPic input{
+    background-color: #fbedbe;
+    color: #333;
+    margin-top: 3vh;
+    margin-bottom: 1vh;
+    border-radius: 20px;
+}
+
+.uploadProfPic input[type=submit]{
+    background-color: #333;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}

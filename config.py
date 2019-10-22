@@ -6,6 +6,7 @@ class Config:
     '''
     SECRET_KEY='minuteWise123'
     SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://rknyra:rknyra7@localhost/pitches'
+    UPLOADED_PHOTOS_DEST ='app/static/photos'
 
 class ProdConfig(Config):
     '''
