@@ -1,6 +1,6 @@
-{% extends 'bootstrap/base.html'%}
+<!-- {% extends 'bootstrap/base.html'%}
 
-<!-- Styles/css block  -->
+<!-Styles/css block  -->
 {% block styles %}
 {{ super() }}
 <link
@@ -61,7 +61,7 @@
         <li class="nav-item">
           <a
             class="nav-link"
-            href="{{url_for('main.sharePitch', _anchor='shareForm')}}"
+            href="{{url_for('main.sharePitch',_anchor='shareForm')}}"
           >
             Share your Minute-Wise pitch!
           </a>
@@ -122,32 +122,45 @@
 <div class="container">
   <div class="jumbotron">
     <div class="row profileStyle">
-      <!-- usrname -->
-      <div class="col-md-4">
-        <h4>{{ user.username | capitalize }}</h4>
+
+      <div class="col-md-4"> 
+      <!-- prof-pic -->
+          <h4>{{ user.username | capitalize }}</h4>
+          {% if user.profile_pic_path %}
+          <img
+            src="{{url_for('static',filename=user.profile_pic_path)}}"
+            alt="prof-pic"
+            class="img-thumbnail"
+          />
+          {% else %}
+          <p>No Profile Pic</p>
+          {% endif %}
       </div>
 
-      <!-- bio -->
+      <div class="col-md-4">
+        <!-- usrname -->
+        <h4>{{ user.username | capitalize }}</h4>
+        <hr>
+        <!-- bio -->
       {% if user.bio %}
       <p>{{ user.bio }}</p>
       {% else %}
       <p>{{ user.username }} has no bio</p>
       {% endif %}
+      <hr>
+       <!-- edit profile -->
+       {% if user == current_user %}
+       <a href="{{url_for('main.update_profile',uname=user.username)}}"
+         >Update Profile</a
+       >
 
-      <!-- prof-pic -->
-      <div class="col-md-4">
-        {% if user.profile_pic_path %}
-        <img
-          src="{{url_for('static',filename=user.profile_pic_path)}}"
-          alt="prof-pic"
-          class="img-thumbnail"
-        />
-        {% else %}
-        <p>No Profile Pic</p>
-        {% endif %}
+       {% endif %}
       </div>
+
+
+
     </div>
   </div>
 </div>
 
-{% endblock %}
+{% endblock %} -->

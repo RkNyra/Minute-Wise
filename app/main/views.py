@@ -1,8 +1,9 @@
 from flask import render_template, request, redirect, url_for, abort
 from . import main
-from .forms import SharePitchForm
+from .forms import SharePitchForm, UpdateProfile
 from flask_login import login_required
 from ..models import User
+from .. import db
 
 
 # Views
@@ -21,7 +22,6 @@ def index():
 @login_required
 def sharePitch():
     form = SharePitchForm()
-    
     '''
     View share_pitch page function that returns the pitch-sharing page and its form
     '''
@@ -35,4 +35,22 @@ def profile(usrname):
     if user is None:
         abort(404)
     
-    return render_template('profile/profile.html', user = user)
+    return render_template('/profile/profile.html',user=user)
+
+# Update Profile
+@main.route('/user/<uname>/update', methods=['GET','POST'])
+@login_required
+def update_profile(uname):
+    
+    form = UpdateProfile()
+    user = User.query.filter_by(username = uname).first()
+    if user is None:
+        abort(404)
+    if form.validate_on_submit():
+        user.bio = form.bio.data
+        
+        db.session.add(user)
+        db.session.commit()
+        
+        return redirect(url_for('.profile', uname=user.username))
+    return render_template('profile/update.html', profEditForm = form)

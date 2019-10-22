@@ -70,4 +70,5 @@ body{
     font-size: 2vh;
     margin-bottom: 7vh;
     border-radius: 3%;
+    flex-direction: row;
     }
