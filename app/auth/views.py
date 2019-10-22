@@ -1,5 +1,5 @@
 from flask import render_template,redirect,url_for,flash,request
-from flask_login import login_user
+from flask_login import login_user,logout_user,login_required
 from . import auth
 from .forms import SignUpForm, SignInForm
 from ..models import User
@@ -19,8 +19,8 @@ def signUp():
         db.session.add(user)
         db.session.commit()
         return redirect(url_for('auth.signIn'))
-        title = "New Pitcher"
     
+    title = "New Pitcher"
     return render_template('auth/signUp.html', SignUpForm=form, title=title)
 
 
@@ -41,3 +41,10 @@ def signIn():
         
     title = "Minute Wise Login"
     return render_template('auth/signIn.html', SignInForm=formLogin, title=title)
+
+# Sign out page
+@auth.route('/signOut')
+@login_required
+def logOut():
+    logout_user()
+    return redirect(url_for('main.index'))

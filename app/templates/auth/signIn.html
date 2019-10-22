@@ -18,7 +18,7 @@
 
         <!-- Sign in form -->
         {{ wtf.quick_form(SignInForm)}}
-        <p>Don't have an account yet? <a href="{{url_for('auth.signUp')}}">Sign Up here</a> </p>
+        <p>Don't have an account yet? <a href="{{url_for('auth.signUp', _anchor='regForm')}}">Sign Up here</a> </p>
         </div>
     </div>
 
