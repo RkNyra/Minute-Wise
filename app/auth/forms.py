@@ -14,14 +14,14 @@ class SignUpForm(FlaskForm):
     confirm_password = PasswordField('', validators=[Required()], render_kw={"placeholder": "Confirm password"})
     submit = SubmitField('Sign Up')
     
-    # Custom validators
+    # Custom validators     
     def validate_email(self,data_field):
         if User.query.filter_by(email = data_field.data).first():
-            raise ValidationError('There is an account with that email.')
-    
+            raise ValidationError('There is an account with that email')
+
     def validate_username(self,data_field):
         if User.query.filter_by(username = data_field.data).first():
-            raise ValidationError('That username is taken')
+            raise ValidationError('That username is taken')    
     
     
 class SignInForm(FlaskForm):

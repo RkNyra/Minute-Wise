@@ -16,7 +16,7 @@ A python-flask based application that encourages the wise use of every minute. U
 
 
 ### Behavior Driven Development
-##### A user is able to:
+#### A user is able to:
 1. see the one-minute/minute-wise pitches other people have posted
 2. sign up (new-users)
 3. recieve a welcoming email upon signup

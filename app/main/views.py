@@ -1,8 +1,8 @@
 from flask import render_template, request, redirect, url_for, abort
 from . import main
-from .forms import SharePitchForm, UpdateProfile
+from .forms import SharePitchForm, UpdateProfile, CommentForm
 from flask_login import login_required
-from ..models import User
+from ..models import User, Pitch, Comment
 from .. import db, photos
 
 
@@ -81,3 +81,5 @@ def update_pic(uname):
         user.profile_pic_path = path
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
+
+# Comment
