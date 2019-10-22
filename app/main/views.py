@@ -1,7 +1,8 @@
-from flask import render_template, redirect, url_for
+from flask import render_template, request, redirect, url_for, abort
 from . import main
 from .forms import SharePitchForm
 from flask_login import login_required
+from ..models import User
 
 
 # Views
@@ -26,3 +27,12 @@ def sharePitch():
     '''
     return render_template('/new_pitch.html', SharePitchForm=form)
 
+# User profile
+@main.route('/user<usrname>')
+def profile(usrname):
+    user = User.query.filter_by(username = usrname).first()
+    
+    if user is None:
+        abort(404)
+    
+    return render_template('profile/profile.html', user = user)
