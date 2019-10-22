@@ -62,3 +62,12 @@ body{
     padding: 10px;
     margin-top: 10vh;
     }
+
+.profileStyle{
+    background-color: #fbedbe;
+    color: #333;
+    font-family: 'Philosopher', sans-serif;
+    font-size: 2vh;
+    margin-bottom: 7vh;
+    border-radius: 3%;
+    }

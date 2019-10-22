@@ -13,4 +13,5 @@ class SharePitchForm(FlaskForm):
     # contributor_name = StringField('', validators=[Required()], render_kw={"placeholder":"Write your username"})
     # username should pick from current user's username
     submit = SubmitField('Share')
-    
+
+

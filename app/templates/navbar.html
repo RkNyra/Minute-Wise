@@ -45,9 +45,14 @@
     <ul class="navbar-nav ml-auto">
 
       {% if current_user.is_authenticated %}
-      <li style="color:white;padding:15px"> {{ current_user.username }} </li>
-      <li> <a href="{{url_for('main.profile',usrname=current_user.username)}}"> Profile </a> </li>
-      <li><a href="{{url_for('auth.logOut')}}">Sign Out</a></li>
+
+      <!-- Share your pitch -->
+      <li class="nav-item"><a class="nav-link" href="{{url_for('main.sharePitch', _anchor='shareForm')}}"> Share your Minute-Wise pitch! </a></li>
+
+      <li class="nav-item"><a class="nav-link" href="{{url_for('main.profile',usrname=current_user.username)}}"> {{ current_user.username }} </a> </li>  
+
+      <!-- sign out -->
+      <li class="nav-item"><a class="nav-link" href="{{url_for('auth.logOut')}}">Sign Out</a></li>
       {% else %}
 
       <!-- Share your pitch -->
