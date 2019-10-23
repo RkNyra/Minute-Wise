@@ -33,6 +33,7 @@ def signUp():
     
     
     title = "New Pitcher"
+    flash('Form did not validate, try again', 'success')
     return render_template('auth/signUp.html', SignUpForm=form, title=title)
 
 

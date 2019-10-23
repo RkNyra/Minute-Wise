@@ -1,4 +1,6 @@
 {% extends 'base.html'%}
+{% import 'bootstrap/wtf.html' as wtf%}
+
 
 <!-- pitches block  -->
 {% block content %}
@@ -23,8 +25,10 @@
       <div>
         <!-- post comment -->
         <p>Post Comment</p>
-        <textarea class="form-control" rows="3" id="comment"></textarea><br>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <hr>
+        {{ wtf.quick_form(CommentForm)}}
+
+ 
 
       </div>
 

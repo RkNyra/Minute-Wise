@@ -13,9 +13,10 @@ def index():
     '''
     View root page function that returns the index page and its details
     '''
+    comment_form = CommentForm()
     
     title = 'Minute-Wise'
-    return render_template('index.html', title=title)
+    return render_template('index.html', title=title, CommentForm=comment_form)
 
 # Share your pitch form
 @main.route('/sharePitch', methods=['GET','POST'])
@@ -82,4 +83,15 @@ def update_pic(uname):
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
 
-# Comment
+
+# Comment on other people's pitches
+@main.route('/comment', methods=['GET','POST'])
+@login_required
+def post_comment():
+    comment_form = CommentForm()
+    '''
+    View post_comment function that facilitates posting of comments
+    '''
+    return render_template('index.html', CommentForm=comment_form)
+
+    
