@@ -31,7 +31,7 @@ def signUp():
         return redirect(url_for('auth.signIn')) 
         
     
-    flash('Form did not validate, try again')
+    # flash('Form did not validate, try again')
     title = "New Pitcher"
     return render_template('auth/signUp.html', SignUpForm=form, title=title)
 
