@@ -55,9 +55,9 @@ class Comment(db.Model):
     pitches_id = db.Column(db.Integer,db.ForeignKey('pitches.id'))
     users_id = db.Column(db.Integer,db.ForeignKey('users.id'))
 
-
     def __repr__(self):
         return f'User {self.name}'
+    
     
 class PitchCategory(db.Model):
     __tablename__='pcategories'

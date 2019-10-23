@@ -1,0 +1,19 @@
+<!-- display pitch categories -->
+{% macro displayPitchCategories(categories) %}
+
+    {% for item in categories %}
+        <div>{{ item.category }}</div>
+    {% endfor %}
+
+{% endmacro %}
+
+<!-- display pitches -->
+{% macro displayPitch(pitches) %}
+
+    {% for item in pitches %}
+        <div>{{ item.pitch }}</div>
+    {% endfor %}
+
+{% endmacro %}
+
+<!-- diplsay username of person posting pitch -->

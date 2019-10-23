@@ -1,37 +1,108 @@
-{% extends 'base.html'%}
-{% import 'bootstrap/wtf.html' as wtf%}
-
+{% extends 'base.html'%} {% import 'bootstrap/wtf.html' as wtf%} {% import
+'macros.html' as macro %}
 
 <!-- pitches block  -->
 {% block content %}
 <div class="container">
-  <div class="card" style="width: 17rem;">
-    <div class="card-body">
-      <h4 class="card-title">Pitch Category </h4>
-      <p class="card-text">For every minute you smile, you get a whole 60-seconds of happiness!</p>
-      <p>Contributer Username</p>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Hot & Trending</h5>
+          <hr />
+          <p class="card-text">
+            For every minute you smile, you get a whole 60-seconds of happiness!
+          </p>
+          
+          <!-- Like/Dislike Buttons -->
+          <div class="vote d-flex justify-content-around">
+            <!-- up-vote -->
+            <a href="#">
+              <img
+                src="{{url_for('static', filename='images/Like.png')}}"
+                alt="Up-Vote"
+            /></a>
 
-      <!-- Like/Dislike Buttons -->
-      <div class="vote">
-        
-        <!-- up-vote -->
-       <a href="#"> <img src="{{url_for('static', filename='images/Like.png')}}" alt="Up-Vote"></a>
-        
-        <!-- down-vote -->
-        <a href="#"><img src="{{url_for('static',filename='images/Dislike.png')}}" alt="Down-Vote"></a>
-      
+            <!-- down-vote -->
+            <a href="#"
+              ><img
+                src="{{url_for('static',filename='images/Dislike.png')}}"
+                alt="Down-Vote"
+            /></a>
+          </div>
+          <hr />
+          <div>
+            <!-- post comment -->
+            {{ wtf.quick_form(CommentForm) }}
+          </div>
+        </div>
       </div>
-      <hr>
-      <div>
-        <!-- post comment -->
-        <p>Post Comment</p>
-        <hr>
-        {{ wtf.quick_form(CommentForm)}}
+    </div>
 
- 
+    <div class="col-md-4" style="height: 20rem;">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Love & Life</h5>
+          <hr />
+          <p class="card-text">Take the risk or lose the chance.</p>
+          
+          <!-- Like/Dislike Buttons -->
+          <div class="vote d-flex justify-content-around">
+            <!-- up-vote -->
+            <a href="#">
+              <img
+                src="{{url_for('static', filename='images/Like.png')}}"
+                alt="Up-Vote"
+            /></a>
 
+            <!-- down-vote -->
+            <a href="#"
+              ><img
+                src="{{url_for('static',filename='images/Dislike.png')}}"
+                alt="Down-Vote"
+            /></a>
+          </div>
+          <hr />
+          <div>
+            <!-- post comment -->
+            {{ wtf.quick_form(CommentForm) }}
+          </div>
+        </div>
       </div>
+    </div>
 
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Pick up Lines</h5>
+          <hr />
+          <p class="card-text">
+            Do you believe in love at first flkandfn sight or should I pass by again?
+          </p>
+          
+          <!-- Like/Dislike Buttons -->
+          <div class="vote d-flex justify-content-around">
+            <!-- up-vote -->
+            <a href="#">
+              <img
+                src="{{url_for('static', filename='images/Like.png')}}"
+                alt="Up-Vote"
+            /></a>
+
+            <!-- down-vote -->
+            <a href="#"
+              ><img
+                src="{{url_for('static',filename='images/Dislike.png')}}"
+                alt="Down-Vote"
+            /></a>
+          </div>
+          <hr />
+          <div>
+            <!-- post comment -->
+            {{ wtf.quick_form(CommentForm) }}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

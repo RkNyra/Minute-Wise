@@ -2,7 +2,7 @@ from flask import render_template, request, redirect, url_for, abort
 from . import main
 from .forms import SharePitchForm, UpdateProfile, CommentForm
 from flask_login import login_required
-from ..models import User, Pitch, Comment
+from ..models import User, Pitch, Comment,PitchCategory
 from .. import db, photos
 
 
@@ -14,9 +14,11 @@ def index():
     View root page function that returns the index page and its details
     '''
     comment_form = CommentForm()
+    categories = PitchCategory.query.all()
+    pitches = Pitch.query.all()
     
     title = 'Minute-Wise'
-    return render_template('index.html', title=title, CommentForm=comment_form)
+    return render_template('index.html', title=title, CommentForm=comment_form,categories=categories)
 
 # Share your pitch form
 @main.route('/sharePitch', methods=['GET','POST'])
