@@ -13,9 +13,10 @@ class User(UserMixin,db.Model):
     pass_secure = db.Column(db.String(255))
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String)
-    pitches_id = db.Column(db.Integer,db.ForeignKey('pitches.id'))
-    
-    
+    pitches = db.relationship('Pitch',backref = 'user',lazy="dynamic")
+    comments = db.relationship('Comment',backref = 'user',lazy="dynamic")
+
+        
     @property
     def password(self):
         raise AttributeError('You cannot read the password attribute')
@@ -38,10 +39,10 @@ class User(UserMixin,db.Model):
 class Pitch(db.Model):
     __tablename__='pitches'
     id = db.Column(db.Integer,primary_key = True)
-    category = db.Column(db.String(200))
     pitch = db.Column(db.String(255))
-    comments_id = db.Column(db.Integer,db.ForeignKey('comments.id'))
-    users = db.relationship('User',backref = 'pitch',lazy="dynamic")
+    users_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+    comments = db.relationship('Comment',backref = 'pitch',lazy="dynamic")
+    pcategory_id = db.Column(db.Integer,db.ForeignKey('pcategories.id'))
 
     def __repr__(self):
         return f'User {self.name}'
@@ -51,9 +52,18 @@ class Comment(db.Model):
     __tablename__='comments'
     id = db.Column(db.Integer,primary_key = True)
     comment = db.Column(db.String(255))
-    pitches = db.relationship('Pitch',backref = 'comment',lazy="dynamic")
+    pitches_id = db.Column(db.Integer,db.ForeignKey('pitches.id'))
+    users_id = db.Column(db.Integer,db.ForeignKey('users.id'))
 
 
     def __repr__(self):
         return f'User {self.name}'
-   
+    
+class PitchCategory(db.Model):
+    __tablename__='pcategories'
+    id = db.Column(db.Integer,primary_key=True)
+    category = db.Column(db.String(255))
+    pitches = db.relationship('Pitch',backref = 'pcategory',lazy="dynamic")
+    
+    def __repr__(self):
+        return f'User {self.name}'
