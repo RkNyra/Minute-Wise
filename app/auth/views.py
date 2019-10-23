@@ -16,6 +16,8 @@ def signUp():
     form = SignUpForm()
     if request.method == "POST":
         print(request.form.get('confirm_password'))
+    
+    flash('Form did not validate, try again')
 
     if form.validate_on_submit():  
         print('form')
@@ -33,7 +35,7 @@ def signUp():
     
     
     title = "New Pitcher"
-    flash('Form did not validate, try again', 'success')
+    
     return render_template('auth/signUp.html', SignUpForm=form, title=title)
 
 
