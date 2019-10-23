@@ -34,11 +34,11 @@
           Pitch Categories
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Hot & Trending</a>
+          <a class="dropdown-item" href="{{url_for('main.goToPitches', _anchor='hot')}}">Hot & Trending</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Pick up lines :) </a>
+          <a class="dropdown-item" href="{{url_for('main.goToPitches', _anchor='pickUp')}}">Pick up lines :) </a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Love & Life</a>
+          <a class="dropdown-item" href="{{url_for('main.goToPitches', _anchor='lnl')}}">Love & Life</a>
         </div>
       </li>
     </ul>
@@ -56,7 +56,7 @@
       {% else %}
 
       <!-- Share your pitch -->
-      <li class="nav-item"><a class="nav-link" href="{{url_for('main.sharePitch', _anchor='shareForm')}}"> Share your Minute-Wise pitch! </a></li>
+      <li class="nav-item"><a class="nav-link" href="{{url_for('main.sharePitch', _anchor='loginForm')}}"> Share your Minute-Wise pitch! </a></li>
 
       <!-- Sign Up -->
       <li class="nav-item"><a class="nav-link" href="{{url_for('auth.signUp', _anchor='regForm')}}"> Sign Up </a></li>
@@ -76,6 +76,11 @@
     <h1>so...</h1>
     <p class="display-4">Be Minute -Wise!</p>
     <hr>
+    {% if current_user.is_authenticated %}
     <h2> <a href="{{url_for('main.sharePitch', _anchor='shareForm')}}" >Share your one-minute pitch</a></h2>
+    {% else %}
+    <h2> <a href="{{url_for('main.sharePitch', _anchor='loginForm')}}" >Share your one-minute pitch</a></h2>
+    {% endif %}
+
   </div>
 </div>

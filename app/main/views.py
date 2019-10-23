@@ -18,7 +18,7 @@ def index():
     pitches = Pitch.query.all()
     
     title = 'Minute-Wise'
-    return render_template('index.html', title=title, CommentForm=comment_form,categories=categories)
+    return render_template('index.html', title=title, CommentForm=comment_form, categories=categories)
 
 # Share your pitch form
 @main.route('/sharePitch', methods=['GET','POST'])
@@ -83,7 +83,7 @@ def update_pic(uname):
         path = f'photos/{filename}'
         user.profile_pic_path = path
         db.session.commit()
-    return redirect(url_for('main.profile',uname=uname))
+    return redirect(url_for('main.profile',usrname=uname))
 
 
 # Comment on other people's pitches
@@ -96,4 +96,23 @@ def post_comment():
     '''
     return render_template('index.html', CommentForm=comment_form)
 
+
+# Redirect to pitches page
+@main.route('/pitches')
+def goToPitches():
+    '''
+    View pitches page function that returns the pitches page and its details
+    '''
+    categories = PitchCategory.query.all()
+    oneCategory = PitchCategory.query.filter_by(id=1).first()
+    pitches = Pitch.query.all()
+    onePitch = Pitch.query.filter_by(id=1).first()
+    comment_form = CommentForm()
+
+    # form = UpdateProfile()
+    # user = User.query.filter_by(username = usrname).first()
     
+    # if user is None:
+    #     abort(404)
+    
+    return render_template('/pitches.html', categories=categories, pitches=pitches, oneCategory=oneCategory, onePitch=onePitch, CommentForm=comment_form)

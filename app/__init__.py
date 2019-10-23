@@ -29,20 +29,21 @@ def create_app(config_name):
     login_manager.init_app(app)
     mail.init_app(app)
     
-    # Registering the blueprint -main
+    # Registering the blueprints - auth and main
+    from .auth import auth as auth_blueprint
+    app.register_blueprint(auth_blueprint,url_prefix = '/authenticate')
+    
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
     
     # Registering the blueprint -auth
-    from .auth import auth as auth_blueprint
-    app.register_blueprint(auth_blueprint,url_prefix = '/authenticate')
-    
+   
     
     # Configure UploadSet
     configure_uploads(app,photos)
 
 
-    from .main import views
-    from .main import errors
+    # from .main import views
+    # from .main import errors
 
     return app

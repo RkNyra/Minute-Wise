@@ -30,9 +30,11 @@ A python-flask based application that encourages the wise use of every minute. U
 No known bugs
 
 ### Technologies Used
-1. Python - Flask 
-2. HTML
-3. CSS
+1. Python 
+2. Flask
+3. Postgres
+4. HTML
+5. CSS
 
 ### Support and contact details
 For pertinent comments, suggestions or questions, you may contact me at [Rk Nyra.](https://www.gmail.com/)

@@ -39,7 +39,6 @@ body{
 .vote img{
     height: 20px;
     width: 20px;
-
 }
 
 .whiteForm {
@@ -88,4 +87,14 @@ body{
     background-color: #007bff;
     border-color: #007bff;
     cursor: pointer;
+}
+
+.voteInPitches{
+  width: 20%;
+  display: flex;
+  justify-content: space-between;
+}
+.voteInPitches img{
+    height: 20px;
+    width: 20px;
 }

@@ -18,7 +18,8 @@
 
         <!-- Sign in form -->
         {{ wtf.quick_form(SignInForm)}}
-        <p>Don't have an account yet? <a href="{{url_for('auth.signUp', _anchor='regForm')}}">Sign Up here</a> </p>
+        <hr>
+        <div>New to Minute-Wise?  <a href="{{url_for('auth.signUp', _anchor='regForm')}}">Sign Up here</a> </div>
         </div>
     </div>
 

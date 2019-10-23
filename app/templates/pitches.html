@@ -1,21 +1,20 @@
-{% extends 'base.html'%} {% import 'bootstrap/wtf.html' as wtf%} {% import
-'macros.html' as macro %}
-
-<!-- pitches block  -->
-{% block content %}
+{% extends 'base.html'%} {% import 'bootstrap/wtf.html' as wtf%} {% block
+content %}
 <div class="container">
-  <div class="row">
-    <div class="col-md-4">
+  <!-- Hot & Trending Pitches -->
+  <div class="row d-flex justify-content-center" id="hot">
+    <div class="col-md-10">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Hot & Trending</h5>
+          <h3 class="card-title text-center">{{ oneCategory }}</h3>
           <hr />
+
           <p class="card-text">
-            For every minute you smile, you get a whole 60-seconds of happiness!
+            {{ onePitch }}
           </p>
-          
+
           <!-- Like/Dislike Buttons -->
-          <div class="vote d-flex justify-content-around">
+          <div class="voteInPitches">
             <!-- up-vote -->
             <a href="#">
               <img
@@ -38,16 +37,22 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="col-md-4" style="height: 20rem;">
+  <!-- Pick-up Lines -->
+  <div class="row d-flex justify-content-center" id="pickUp">
+    <div class="col-md-10">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Love & Life</h5>
+          <h3 class="card-title text-center">Pick-Up Lines</h3>
           <hr />
-          <p class="card-text">Take the risk or lose the chance. Savor the moment! :)</p>
-          
+          <p class="card-text">
+            Would you grab my arm, so I can tell my friends I’ve been touched by
+            an angel?
+          </p>
+
           <!-- Like/Dislike Buttons -->
-          <div class="vote d-flex justify-content-around">
+          <div class="voteInPitches">
             <!-- up-vote -->
             <a href="#">
               <img
@@ -70,18 +75,22 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="col-md-4">
+  <!-- Love & Life Pitches-->
+  <div class="row d-flex justify-content-center" id="lnl">
+    <div class="col-md-10">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Pick up Lines</h5>
+          <h3 class="card-title text-center">Love & Life</h3>
           <hr />
           <p class="card-text">
-            Do you believe in "love at first sight" or should I pass by again?
+            Sometimes, it's a beautiful thing that the future comes one day at a
+            time...never all-at-once.
           </p>
-          
+
           <!-- Like/Dislike Buttons -->
-          <div class="vote d-flex justify-content-around">
+          <div class="voteInPitches">
             <!-- up-vote -->
             <a href="#">
               <img

@@ -1,4 +1,4 @@
-from flask import render_template,redirect,url_for,flash,request
+from flask import render_template, redirect, url_for, flash,request
 from flask_login import login_user,logout_user,login_required
 from . import auth
 from .forms import SignUpForm, SignInForm
@@ -14,26 +14,21 @@ def signUp():
     View sign_up page function that returns the sign_up page and sign_up form
     '''
     form = SignUpForm()
-    if request.method == "POST":
-        print(request.form.get('confirm_password'))
-
     if form.validate_on_submit():  
-        print('form')
-
-     
+             
         user = User(username = form.username.data, email = form.email.data, password = form.password.data)
+        
         db.session.add(user)
         db.session.commit()
         
         mail_message("Willkommen to Minute-Wise","email/welcome_user",user.email,user=user)
         
-        flash('Sign-up successful! Sign in below', 'success')
-        return redirect(url_for('auth.signIn')) 
-        
+        flash('Sign-up successful! Sign in below')
+        return redirect(url_for('auth.signIn'))
     
-    # flash('Form did not validate, try again')
-    title = "New Pitcher"
+    title = "Minute-Wise New Pitcher"   
     return render_template('auth/signUp.html', SignUpForm=form, title=title)
+    
 
 
 # Sign In Page/Form

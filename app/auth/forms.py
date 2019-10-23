@@ -8,8 +8,8 @@ class SignUpForm(FlaskForm):
     '''
     Sign up form where new users can register into the app
     '''
-    username = StringField('', validators=[Required()], render_kw={"placeholder": "Enter your preferred username"})
     email = StringField('', validators=[Required(), Email()], render_kw={"placeholder": "Enter your email address"})
+    username = StringField('', validators=[Required()], render_kw={"placeholder": "Enter your preferred username"})
     password = PasswordField('', validators=[Required(), EqualTo('confirm_password',message = 'Passwords must match')], render_kw={"placeholder": "Enter your referred password"})
     confirm_password = PasswordField('', validators=[Required()], render_kw={"placeholder": "Confirm password"})
     submit = SubmitField('Sign Up')

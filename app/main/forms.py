@@ -17,8 +17,8 @@ class SharePitchForm(FlaskForm):
 
 class UpdateProfile(FlaskForm):
     bio = TextAreaField('Tell us about you',validators=[Required()])
-    submit = SubmitField('Submit')
+    submit = SubmitField('Update')
 
 class CommentForm(FlaskForm):
     comment = TextAreaField('Your thought?',validators=[Required()], render_kw={"placeholder": "Post your comment"})
-    submit = SubmitField('Submit')
+    submit = SubmitField('Post Comment')
