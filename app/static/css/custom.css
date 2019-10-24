@@ -22,12 +22,17 @@ body{
 }
 
 
+.categoryTitle{
+    background-color: #202020;
+    color: white;
+
+}
 .card {
     background-color: #fbedbe;
     color: #333;
     font-family: 'Philosopher', sans-serif;
     font-size: 3vh;
-    margin-bottom: 7vh;
+    margin-bottom: 10vh;
 }
 
 .vote{

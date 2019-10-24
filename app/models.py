@@ -13,7 +13,7 @@ class User(UserMixin,db.Model):
     pass_secure = db.Column(db.String(255))
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String)
-    pitches = db.relationship('Pitch',backref = 'user',lazy="dynamic")
+    # pitches = db.relationship('Pitch',backref = 'user',lazy="dynamic")
     comments = db.relationship('Comment',backref = 'user',lazy="dynamic")
 
         
@@ -40,9 +40,14 @@ class Pitch(db.Model):
     __tablename__='pitches'
     id = db.Column(db.Integer,primary_key = True)
     pitch = db.Column(db.String(255))
-    users_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+    category = db.Column(db.String(255))
+    # users_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     comments = db.relationship('Comment',backref = 'pitch',lazy="dynamic")
-    pcategory_id = db.Column(db.Integer,db.ForeignKey('pcategories.id'))
+    # pcategory_id = db.Column(db.Integer,db.ForeignKey('pcategories.id'))
+    
+    def save_pitch(self):
+        db.session.add(self)
+        db.session.commit()
     
     def __repr__(self):
         return f'{self.pitch}'
@@ -55,15 +60,20 @@ class Comment(db.Model):
     pitches_id = db.Column(db.Integer,db.ForeignKey('pitches.id'))
     users_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     
+    def save_comment(self):
+        db.session.add(self)
+        db.session.commit()
+    
+    
     def __repr__(self):
         return f'{self.comment}'
     
     
-class PitchCategory(db.Model):
-    __tablename__='pcategories'
-    id = db.Column(db.Integer,primary_key=True)
-    category = db.Column(db.String(255))
-    pitches = db.relationship('Pitch',backref = 'pcategory',lazy="dynamic")
+# class PitchCategory(db.Model):
+#     __tablename__='pcategories'
+#     id = db.Column(db.Integer,primary_key=True)
+#     category = db.Column(db.String(255))
+#     pitches = db.relationship('Pitch',backref = 'pcategory',lazy="dynamic")
     
-    def __repr__(self):
-        return f'{self.category}'
+#     def __repr__(self):
+#         return f'{self.category}'

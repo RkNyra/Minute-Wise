@@ -1,8 +1,8 @@
-from flask import render_template, request, redirect, url_for, abort
+from flask import render_template, request, redirect, url_for, abort, session
 from . import main
 from .forms import SharePitchForm, UpdateProfile, CommentForm
 from flask_login import login_required
-from ..models import User, Pitch, Comment,PitchCategory
+from ..models import User, Pitch, Comment
 from .. import db, photos
 
 
@@ -14,21 +14,31 @@ def index():
     View root page function that returns the index page and its details
     '''
     comment_form = CommentForm()
-    categories = PitchCategory.query.all()
+    
     pitches = Pitch.query.all()
     
     title = 'Minute-Wise'
-    return render_template('index.html', title=title, CommentForm=comment_form, categories=categories)
+    return render_template('index.html', title=title, CommentForm=comment_form)
 
 # Share your pitch form
 @main.route('/sharePitch', methods=['GET','POST'])
 @login_required
 def sharePitch():
-    form = SharePitchForm()
     '''
     View share_pitch page function that returns the pitch-sharing page and its form
     '''
-    return render_template('/new_pitch.html', SharePitchForm=form)
+    posted_pitches = Pitch.query.all()
+    form = SharePitchForm()
+     
+    if form.validate_on_submit():
+        pitch = Pitch(pitch = form.pitch.data, category=form.pitch_category.data)
+        
+        db.session.add(pitch)
+        db.session.commit()
+        
+        return redirect(url_for('main.goToPitches'))
+    
+    return render_template('new_pitch.html', SharePitchForm=form)
 
 # User profile
 @main.route('/user/<usrname>')
@@ -87,14 +97,22 @@ def update_pic(uname):
 
 
 # Comment on other people's pitches
-@main.route('/comment', methods=['GET','POST'])
+@main.route('/comment', methods=['POST'])
 @login_required
-def post_comment():
-    comment_form = CommentForm()
+def post_comment(pitch):
     '''
     View post_comment function that facilitates posting of comments
     '''
-    return render_template('index.html', CommentForm=comment_form)
+    comment_form = CommentForm()
+    comment = Comment.query.filter_by(pitches_id=pitch).first()
+    if comment_form.validate_on_submit():
+        comment = comment_form.comment.data
+        
+        db.session.add(comment)
+        db.session.commit()
+        return render_template('pitches.html', comment=comment)
+        
+    return render_template('pitches.html', CommentForm=comment_form)
 
 
 # Redirect to pitches page
@@ -102,17 +120,14 @@ def post_comment():
 def goToPitches():
     '''
     View pitches page function that returns the pitches page and its details
-    '''
-    categories = PitchCategory.query.all()
-    oneCategory = PitchCategory.query.filter_by(id=1).first()
+    '''   
     pitches = Pitch.query.all()
-    onePitch = Pitch.query.filter_by(id=1).first()
-    comment_form = CommentForm()
+    
+    categoryOne = Pitch.query.filter_by(id=1).first()
+    catTwo = Pitch.query.filter_by(id=2).first()
+    catThree = Pitch.query.filter_by(id=3).first()
+ 
 
-    # form = UpdateProfile()
-    # user = User.query.filter_by(username = usrname).first()
+    comment_form = CommentForm()
     
-    # if user is None:
-    #     abort(404)
-    
-    return render_template('/pitches.html', categories=categories, pitches=pitches, oneCategory=oneCategory, onePitch=onePitch, CommentForm=comment_form)
+    return render_template('/pitches.html', pitches=pitches, categoryOne=categoryOne, catTwo=catTwo, catThree=catThree, CommentForm=comment_form)

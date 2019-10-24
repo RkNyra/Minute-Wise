@@ -1,16 +1,18 @@
 {% extends 'base.html'%} {% import 'bootstrap/wtf.html' as wtf%} {% block
 content %}
 <div class="container">
+
   <!-- Hot & Trending Pitches -->
   <div class="row d-flex justify-content-center" id="hot">
-    <div class="col-md-10">
+    <div class="col-md-10 categoryTitle">
+        <h3 class="text-center">{{ categoryOne.category }}</h3>
+
       <div class="card">
         <div class="card-body">
-          <h3 class="card-title text-center">{{ oneCategory }}</h3>
-          <hr />
+          <h3 class="card-title text-center"></h3>
 
           <p class="card-text">
-            {{ onePitch }}
+            {{ categoryOne.pitch }}
           </p>
 
           <!-- Like/Dislike Buttons -->
@@ -36,19 +38,26 @@ content %}
           </div>
         </div>
       </div>
+
     </div>
-  </div>
+  
+</div> 
 
   <!-- Pick-up Lines -->
   <div class="row d-flex justify-content-center" id="pickUp">
-    <div class="col-md-10">
+    <div class="col-md-10 categoryTitle">
+        <h3 class="text-center">{{ catTwo.category }}
+        </h3>
+
+
       <div class="card">
         <div class="card-body">
-          <h3 class="card-title text-center">Pick-Up Lines</h3>
-          <hr />
+          <h3 class="card-title text-center"></h3>
+          
           <p class="card-text">
-            Would you grab my arm, so I can tell my friends I’ve been touched by
-            an angel?
+              
+              {{ catTwo.pitch }}
+              
           </p>
 
           <!-- Like/Dislike Buttons -->
@@ -74,19 +83,24 @@ content %}
           </div>
         </div>
       </div>
+
     </div>
   </div>
 
   <!-- Love & Life Pitches-->
   <div class="row d-flex justify-content-center" id="lnl">
-    <div class="col-md-10">
+    <div class="col-md-10 categoryTitle">
+        <h3 class="text-center"> {{ catThree.category }}
+        </h3>
+
       <div class="card">
         <div class="card-body">
-          <h3 class="card-title text-center">Love & Life</h3>
-          <hr />
+          <h3 class="card-title text-center"></h3>
+
           <p class="card-text">
-            Sometimes, it's a beautiful thing that the future comes one day at a
-            time...never all-at-once.
+              
+              {{ catThree.pitch }}
+              
           </p>
 
           <!-- Like/Dislike Buttons -->
@@ -112,6 +126,7 @@ content %}
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </div>

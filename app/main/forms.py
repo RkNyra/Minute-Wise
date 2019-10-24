@@ -7,7 +7,7 @@ class SharePitchForm(FlaskForm):
     # pitch_category = StringField('', validators=[Required()], render_kw={"placeholder": "Select pitch category"})
     
     # select option
-    pitch_category = SelectField(' Pitch here!', choices=[('hot', 'Hot & Trending'), ('pl','Pick-up Lines'), ('ll', 'Love & Life')], validators=[Required()])
+    pitch_category = SelectField('Pitch here!', choices=[('Hot & Trending', 'Hot & Trending'), ('Pick-up Lines','Pick-up Lines'), ('Love & Life', 'Love & Life')], validators=[Required()])
     
     pitch = TextAreaField('', validators=[Required()], render_kw={"placeholder": "Write your pitch here :)"})
     # contributor_name = StringField('', validators=[Required()], render_kw={"placeholder":"Write your username"})
@@ -22,3 +22,4 @@ class UpdateProfile(FlaskForm):
 class CommentForm(FlaskForm):
     comment = TextAreaField('Your thought?',validators=[Required()], render_kw={"placeholder": "Post your comment"})
     submit = SubmitField('Post Comment')
+    
