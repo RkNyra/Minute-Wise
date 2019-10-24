@@ -4,6 +4,7 @@ content %}
 
   <!-- Hot & Trending Pitches -->
   <div class="row d-flex justify-content-center" id="hot">
+    {% if pitches %}
     <div class="col-md-10 categoryTitle">
         <h3 class="text-center">{{ categoryOne.category }}</h3>
 
@@ -40,11 +41,32 @@ content %}
       </div>
 
     </div>
+    {% else %}
+    
+    <div class="col-md-10 categoryTitle">
+        <h3 class="text-center"> Hot & Trending</h3>
+
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title text-center"></h3>
+
+          <p class="card-text">
+No pitches posted yet
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+
+    {% endif %}
   
 </div> 
 
   <!-- Pick-up Lines -->
   <div class="row d-flex justify-content-center" id="pickUp">
+      {% if pitches %}
+
     <div class="col-md-10 categoryTitle">
         <h3 class="text-center">{{ catTwo.category }}
         </h3>
@@ -85,10 +107,31 @@ content %}
       </div>
 
     </div>
+
+    {% else %}
+    <div class="col-md-10 categoryTitle">
+        <h3 class="text-center"> Pick-up Lines</h3>
+
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title text-center"></h3>
+
+          <p class="card-text">
+No pitches posted yet
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+    {% endif %}
+
   </div>
 
   <!-- Love & Life Pitches-->
   <div class="row d-flex justify-content-center" id="lnl">
+      {% if pitches %}
+
     <div class="col-md-10 categoryTitle">
         <h3 class="text-center"> {{ catThree.category }}
         </h3>
@@ -128,6 +171,23 @@ content %}
       </div>
 
     </div>
+    {% else %}
+    <div class="col-md-10 categoryTitle">
+        <h3 class="text-center"> Love & Life </h3>
+
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title text-center"></h3>
+
+          <p class="card-text">
+No pitches posted yet
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+    {% endif %}
   </div>
 </div>
 
