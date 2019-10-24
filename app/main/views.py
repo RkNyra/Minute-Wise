@@ -121,13 +121,15 @@ def goToPitches():
     '''
     View pitches page function that returns the pitches page and its details
     '''   
-    pitches = Pitch.query.all()
+    catOnePitches = Pitch.query.filter_by(category='Hot & Trending').first()
+    catTwoPitches = Pitch.query.filter_by(category='Pick-Up Lines').first()
+    catThreePitches = Pitch.query.filter_by(category='Love & Life').first()
     
-    categoryOne = Pitch.query.filter_by(id=1).first()
-    catTwo = Pitch.query.filter_by(id=2).first()
-    catThree = Pitch.query.filter_by(id=3).first()
+    categoryOne = Pitch.query.filter_by(category='Hot & Trending').first()
+    catTwo = Pitch.query.filter_by(category='Pick-Up Lines').first()
+    catThree = Pitch.query.filter_by(category='Love & Life').first()
  
 
     comment_form = CommentForm()
     
-    return render_template('/pitches.html', pitches=pitches, categoryOne=categoryOne, catTwo=catTwo, catThree=catThree, CommentForm=comment_form)
+    return render_template('/pitches.html', catOnePitches=catOnePitches, catTwoPitches=catTwoPitches, catThreePitches=catThreePitches, categoryOne=categoryOne, catTwo=catTwo, catThree=catThree, CommentForm=comment_form)

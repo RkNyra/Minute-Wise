@@ -1,12 +1,11 @@
 {% extends 'base.html'%} {% import 'bootstrap/wtf.html' as wtf%} {% block
 content %}
 <div class="container">
-
   <!-- Hot & Trending Pitches -->
   <div class="row d-flex justify-content-center" id="hot">
-    {% if pitches %}
+    {% if catOnePitches %}
     <div class="col-md-10 categoryTitle">
-        <h3 class="text-center">{{ categoryOne.category }}</h3>
+      <h3 class="text-center">{{ categoryOne.category }}</h3>
 
       <div class="card">
         <div class="card-body">
@@ -39,47 +38,39 @@ content %}
           </div>
         </div>
       </div>
-
     </div>
     {% else %}
-    
+
     <div class="col-md-10 categoryTitle">
-        <h3 class="text-center"> Hot & Trending</h3>
+      <h3 class="text-center">Hot & Trending</h3>
 
       <div class="card">
         <div class="card-body">
           <h3 class="card-title text-center"></h3>
 
           <p class="card-text">
-No pitches posted yet
+            No pitches posted yet
           </p>
-
         </div>
       </div>
-
     </div>
 
     {% endif %}
-  
-</div> 
+  </div>
 
   <!-- Pick-up Lines -->
   <div class="row d-flex justify-content-center" id="pickUp">
-      {% if pitches %}
+    {% if catTwoPitches %}
 
     <div class="col-md-10 categoryTitle">
-        <h3 class="text-center">{{ catTwo.category }}
-        </h3>
-
+      <h3 class="text-center">{{ catTwo.category }}</h3>
 
       <div class="card">
         <div class="card-body">
           <h3 class="card-title text-center"></h3>
-          
+
           <p class="card-text">
-              
-              {{ catTwo.pitch }}
-              
+            {{ catTwo.pitch }}
           </p>
 
           <!-- Like/Dislike Buttons -->
@@ -105,90 +96,81 @@ No pitches posted yet
           </div>
         </div>
       </div>
-
     </div>
 
     {% else %}
     <div class="col-md-10 categoryTitle">
-        <h3 class="text-center"> Pick-up Lines</h3>
+      <h3 class="text-center">Pick-up Lines</h3>
 
       <div class="card">
         <div class="card-body">
           <h3 class="card-title text-center"></h3>
 
           <p class="card-text">
-No pitches posted yet
+            No pitches posted yet
           </p>
-
         </div>
       </div>
-
     </div>
     {% endif %}
-
   </div>
 
   <!-- Love & Life Pitches-->
-  <div class="row d-flex justify-content-center" id="lnl">
-      {% if pitches %}
-
-    <div class="col-md-10 categoryTitle">
-        <h3 class="text-center"> {{ catThree.category }}
-        </h3>
-
-      <div class="card">
-        <div class="card-body">
-          <h3 class="card-title text-center"></h3>
-
-          <p class="card-text">
-              
+  <div class="row d-flex justify-content-center" id="pickUp">
+      {% if catThreePitches %}
+  
+      <div class="col-md-10 categoryTitle">
+        <h3 class="text-center">{{ catThree.category }}</h3>
+  
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title text-center"></h3>
+  
+            <p class="card-text">
               {{ catThree.pitch }}
-              
-          </p>
-
-          <!-- Like/Dislike Buttons -->
-          <div class="voteInPitches">
-            <!-- up-vote -->
-            <a href="#">
-              <img
-                src="{{url_for('static', filename='images/Like.png')}}"
-                alt="Up-Vote"
-            /></a>
-
-            <!-- down-vote -->
-            <a href="#"
-              ><img
-                src="{{url_for('static',filename='images/Dislike.png')}}"
-                alt="Down-Vote"
-            /></a>
-          </div>
-          <hr />
-          <div>
-            <!-- post comment -->
-            {{ wtf.quick_form(CommentForm) }}
+            </p>
+  
+            <!-- Like/Dislike Buttons -->
+            <div class="voteInPitches">
+              <!-- up-vote -->
+              <a href="#">
+                <img
+                  src="{{url_for('static', filename='images/Like.png')}}"
+                  alt="Up-Vote"
+              /></a>
+  
+              <!-- down-vote -->
+              <a href="#"
+                ><img
+                  src="{{url_for('static',filename='images/Dislike.png')}}"
+                  alt="Down-Vote"
+              /></a>
+            </div>
+            <hr/>
+            <div>
+              <!-- post comment -->
+              {{ wtf.quick_form(CommentForm) }}
+            </div>
           </div>
         </div>
       </div>
-
-    </div>
-    {% else %}
-    <div class="col-md-10 categoryTitle">
-        <h3 class="text-center"> Love & Life </h3>
-
-      <div class="card">
-        <div class="card-body">
-          <h3 class="card-title text-center"></h3>
-
-          <p class="card-text">
-No pitches posted yet
-          </p>
-
+  
+      {% else %}
+      <div class="col-md-10 categoryTitle">
+        <h3 class="text-center">Pick-up Lines</h3>
+  
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title text-center"></h3>
+  
+            <p class="card-text">
+              No pitches posted yet
+            </p>
+          </div>
         </div>
       </div>
-
+      {% endif %}
     </div>
-    {% endif %}
-  </div>
 </div>
 
 {% endblock %}
