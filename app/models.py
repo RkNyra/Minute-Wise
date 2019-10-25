@@ -43,11 +43,13 @@ class Pitch(db.Model):
     category = db.Column(db.String(255))
     # users_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     comments = db.relationship('Comment',backref = 'pitch',lazy="dynamic")
-    # pcategory_id = db.Column(db.Integer,db.ForeignKey('pcategories.id'))
     
     def save_pitch(self):
         db.session.add(self)
         db.session.commit()
+    
+    # def get_comments(self):
+    #     return Comment.query.filter_by(pitches_id=pitches.id).all()
     
     def __repr__(self):
         return f'{self.pitch}'
@@ -59,21 +61,15 @@ class Comment(db.Model):
     comment = db.Column(db.String(255))
     pitches_id = db.Column(db.Integer,db.ForeignKey('pitches.id'))
     users_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+  
     
-    def save_comment(self):
-        db.session.add(self)
-        db.session.commit()
+    # def save_comment(self):
+    #     db.session.add(self)
+    #     db.session.commit()
     
+    # def get_comments(self):
+    #     return Comment.query.filter_by(pitches_id=pitches.id).all()
     
     def __repr__(self):
         return f'{self.comment}'
     
-    
-# class PitchCategory(db.Model):
-#     __tablename__='pcategories'
-#     id = db.Column(db.Integer,primary_key=True)
-#     category = db.Column(db.String(255))
-#     pitches = db.relationship('Pitch',backref = 'pcategory',lazy="dynamic")
-    
-#     def __repr__(self):
-#         return f'{self.category}'

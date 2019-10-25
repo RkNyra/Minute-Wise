@@ -96,24 +96,6 @@ def update_pic(uname):
     return redirect(url_for('main.profile',usrname=uname))
 
 
-# Comment on other people's pitches
-@main.route('/comment', methods=['POST'])
-@login_required
-def post_comment(pitch):
-    '''
-    View post_comment function that facilitates posting of comments
-    '''
-    comment_form = CommentForm()
-    comment = Comment.query.filter_by(pitches_id=pitch).first()
-    if comment_form.validate_on_submit():
-        comment = comment_form.comment.data
-        
-        db.session.add(comment)
-        db.session.commit()
-        return render_template('pitches.html', comment=comment)
-        
-    return render_template('pitches.html', CommentForm=comment_form)
-
 
 # Redirect to pitches page
 @main.route('/pitches')
@@ -121,15 +103,81 @@ def goToPitches():
     '''
     View pitches page function that returns the pitches page and its details
     '''   
-    catOnePitches = Pitch.query.filter_by(category='Hot & Trending').first()
-    catTwoPitches = Pitch.query.filter_by(category='Pick-Up Lines').first()
-    catThreePitches = Pitch.query.filter_by(category='Love & Life').first()
+    catOnePitches = Pitch.query.filter_by(category='Hot & Trending').all()
+    catTwoPitches = Pitch.query.filter_by(category='Pick-up Lines').all()
+    catThreePitches = Pitch.query.filter_by(category='Love & Life').all()
     
     categoryOne = Pitch.query.filter_by(category='Hot & Trending').first()
-    catTwo = Pitch.query.filter_by(category='Pick-Up Lines').first()
+    catTwo = Pitch.query.filter_by(category='Pick-up Lines').first()
     catThree = Pitch.query.filter_by(category='Love & Life').first()
- 
+     
+    comment_form = CommentForm()
+    # comments = Comment.query.filter(Comment.id > 0).all()
+    comments = Comment.query.all()
 
+    
+    return render_template('/pitches.html', catOnePitches=catOnePitches, catTwoPitches=catTwoPitches, catThreePitches=catThreePitches, categoryOne=categoryOne, catTwo=catTwo, catThree=catThree, comments=comments, CommentForm=comment_form)
+
+
+# Comment on other people's pitches
+@main.route('/pitpitchcommentsches', methods=['GET','POST'])
+@login_required
+def post_comment():
+        
+    '''
+    View post_comment function that facilitates posting of comments
+    '''
     comment_form = CommentForm()
     
-    return render_template('/pitches.html', catOnePitches=catOnePitches, catTwoPitches=catTwoPitches, catThreePitches=catThreePitches, categoryOne=categoryOne, catTwo=catTwo, catThree=catThree, CommentForm=comment_form)
+    # if request.method == 'POST':
+    #     print(request.form.get('comment'))
+ 
+        # if comment_form.validate_on_submit():
+    comments = Comment.query.filter_by(pitches_id = pitches_id).all()
+    if request.method == 'POST' and comment_form.validate():
+        comment=comment_form.data
+        pitches_id=pitches_id
+        users_id=current_user._get_current_object().id
+        comment=Comment(comment=comment, pitches_id=pitches_id, users_id=users_id)
+        # comment.save_comment();
+        db.session.add(comment)
+        db.session.commit()
+        
+        
+        # id=id
+        # users_id=current_user._get_current_object().id
+        # new_comment=Comment(comment=comment,users_id=users_id,id=1)
+        # comment.save_comment()
+        # db.session.add(comment)
+        # db.session.commit()
+        
+        
+        # comment=Comment(request.form.get('comment'))
+        # return redirect(url_for('main.post_comment', pitches_id=pitches_id))
+        # return redirect(url_for('main.post_comment',_anchor='pickUp', pitches_id=pitch.id))
+        # return render_template('pitches.html')
+        return redirect(url_for('main.goToPitchComments',_anchor='pickUp', ))
+
+        
+    return render_template('comments.html', CommentForm=comment_form)
+
+# Redirect to comments
+@main.route('/pitchcomments', methods=['GET','POST'])
+def goToPitchComments():
+    '''
+    View pitches page function that returns the pitches page and its details
+    '''   
+    catOnePitches = Pitch.query.filter_by(category='Hot & Trending').all()
+    catTwoPitches = Pitch.query.filter_by(category='Pick-up Lines').all()
+    catThreePitches = Pitch.query.filter_by(category='Love & Life').all()
+    
+    categoryOne = Pitch.query.filter_by(category='Hot & Trending').first()
+    catTwo = Pitch.query.filter_by(category='Pick-up Lines').first()
+    catThree = Pitch.query.filter_by(category='Love & Life').first()
+     
+    comment_form = CommentForm()
+    # comments = Comment.query.filter(Comment.id > 0).all()
+    comments = Comment.query.all()
+
+    
+    return render_template('/comments.html', catOnePitches=catOnePitches, catTwoPitches=catTwoPitches, catThreePitches=catThreePitches, categoryOne=categoryOne, catTwo=catTwo, catThree=catThree, comments=comments, CommentForm=comment_form)

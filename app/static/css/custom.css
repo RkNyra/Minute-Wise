@@ -87,12 +87,21 @@ body{
     border-radius: 15px;
 }
 
-.uploadProfPic input[type=submit]{
+.uploadProfPic input[type=submit], input[type=file]{
     color: #fff;
     background-color: #007bff;
     border-color: #007bff;
     cursor: pointer;
 }
+.commentForm input[type=submit], input[type=text]{
+    color: #fff;
+    background-color: #c0bbbb;
+    border-color: #007bff;
+    cursor: pointer;
+    border-radius: 15px;
+
+}
+
 
 .voteInPitches{
   width: 20%;
