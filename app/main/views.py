@@ -38,7 +38,8 @@ def sharePitch():
         
         return redirect(url_for('main.goToPitches'))
     
-    return render_template('new_pitch.html', SharePitchForm=form)
+    title = 'Minute-Wise: SharePitch'
+    return render_template('new_pitch.html', SharePitchForm=form, title=title)
 
 # User profile
 @main.route('/user/<usrname>')
@@ -48,7 +49,8 @@ def profile(usrname):
     if user is None:
         abort(404)
     
-    return render_template('/profile/profile.html',user=user)
+    title = 'Minute-Wise MyProfile'
+    return render_template('/profile/profile.html',user=user, title=title)
 
 
 
@@ -62,7 +64,8 @@ def goToUpdate(usrname):
     if user is None:
         abort(404)
     
-    return render_template('/profile/update.html',user=user,profEditForm = form)
+    title = 'Minute-Wise: MyProfile'
+    return render_template('/profile/update.html',user=user,profEditForm = form, title=title)
 
 
 # Update Profile
@@ -81,7 +84,9 @@ def update_profile(usrname):
         db.session.commit()
         
         return redirect(url_for('.profile', usrname=user.username))
-    return render_template('/profile/update.html', profEditForm = form)
+    
+    title = 'Minute-Wise'
+    return render_template('/profile/update.html', profEditForm = form, title=title)
 
 # Upload prof pic
 @main.route('/user/<uname>/update/pic',methods= ['POST'])
@@ -93,6 +98,7 @@ def update_pic(uname):
         path = f'photos/{filename}'
         user.profile_pic_path = path
         db.session.commit()
+        
     return redirect(url_for('main.profile',usrname=uname))
 
 
@@ -115,8 +121,8 @@ def goToPitches():
     # comments = Comment.query.filter(Comment.id > 0).all()
     comments = Comment.query.all()
 
-    
-    return render_template('/pitches.html', catOnePitches=catOnePitches, catTwoPitches=catTwoPitches, catThreePitches=catThreePitches, categoryOne=categoryOne, catTwo=catTwo, catThree=catThree, comments=comments, CommentForm=comment_form)
+    title = 'Minute-Wise: Pitches'
+    return render_template('/pitches.html', catOnePitches=catOnePitches, catTwoPitches=catTwoPitches, catThreePitches=catThreePitches, categoryOne=categoryOne, catTwo=catTwo, catThree=catThree, comments=comments, CommentForm=comment_form, title=title)
 
 
 # Comment on other people's pitches
@@ -158,8 +164,8 @@ def post_comment():
         # return render_template('pitches.html')
         return redirect(url_for('main.goToPitchComments',_anchor='pickUp', ))
 
-        
-    return render_template('comments.html', CommentForm=comment_form)
+    title = 'Minute-Wise: Pitches'    
+    return render_template('comments.html', CommentForm=comment_form, title=title)
 
 # Redirect to comments
 @main.route('/pitchcomments', methods=['GET','POST'])
@@ -179,5 +185,5 @@ def goToPitchComments():
     # comments = Comment.query.filter(Comment.id > 0).all()
     comments = Comment.query.all()
 
-    
-    return render_template('/comments.html', catOnePitches=catOnePitches, catTwoPitches=catTwoPitches, catThreePitches=catThreePitches, categoryOne=categoryOne, catTwo=catTwo, catThree=catThree, comments=comments, CommentForm=comment_form)
+    title = 'Minute-Wise: Pitches'
+    return render_template('/comments.html', catOnePitches=catOnePitches, catTwoPitches=catTwoPitches, catThreePitches=catThreePitches, categoryOne=categoryOne, catTwo=catTwo, catThree=catThree, comments=comments, CommentForm=comment_form, title=title)
