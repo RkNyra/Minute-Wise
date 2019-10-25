@@ -93,21 +93,25 @@ body{
     border-color: #007bff;
     cursor: pointer;
 }
+.profPicSize img{
+    max-width:100%;
+    max-height:100%;
+
+}
 .commentForm input[type=submit], input[type=text]{
-    color: #fff;
+    color: #333;
     background-color: #c0bbbb;
     border-color: #007bff;
     cursor: pointer;
     border-radius: 15px;
-
 }
-
 
 .voteInPitches{
   width: 20%;
   display: flex;
   justify-content: space-between;
 }
+
 .voteInPitches img{
     height: 20px;
     width: 20px;
