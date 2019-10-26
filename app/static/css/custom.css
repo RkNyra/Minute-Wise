@@ -104,6 +104,11 @@ body{
     max-height:100%;
 
 }
+.blueComment{
+    color: #007bff;
+    text-decoration: underline;
+    text-decoration-style: solid;
+}
 .commentForm input[type=submit], input[type=text]{
     color: #333;
     background-color: #c0bbbb;
