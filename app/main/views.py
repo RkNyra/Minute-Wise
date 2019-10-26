@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, abort, session
 from . import main
 from .forms import SharePitchForm, UpdateProfile, CommentForm
-from flask_login import login_required
+from flask_login import login_required,current_user
 from ..models import User, Pitch, Comment
 from .. import db, photos
 
@@ -126,46 +126,43 @@ def goToPitches():
 
 
 # Comment on other people's pitches
-@main.route('/pitpitchcommentsches', methods=['GET','POST'])
+# @main.route('/pitpitchcommentsches', methods=['GET','POST'])
+@main.route('/comments', methods=['GET','POST'])
+
 @login_required
 def post_comment():
         
     '''
     View post_comment function that facilitates posting of comments
     '''
-    comment_form = CommentForm()
+    # comment_form = CommentForm()
     
-    # if request.method == 'POST':
-    #     print(request.form.get('comment'))
- 
-        # if comment_form.validate_on_submit():
-    comments = Comment.query.filter_by(pitches_id = pitches_id).all()
-    if request.method == 'POST' and comment_form.validate():
-        comment=comment_form.data
-        pitches_id=pitches_id
-        users_id=current_user._get_current_object().id
-        comment=Comment(comment=comment, pitches_id=pitches_id, users_id=users_id)
-        # comment.save_comment();
+    if request.method == 'POST':
+    
+        print(request.form.get('comment'))
+        print('=========================================')   
+        print(request.form.get('pitches_id'))
+        print('===above me shld be pitches_id a foreign key from pitches table to comments table=====')
+        pitches_id = request.form.get('pitches_id')
+
+        comments = Comment.query.filter(Comment.pitches_id > 0).all()
+        # pitches_id = Comment.query.filter(comments.pitches_id > 0).all()
+
+        print(comments)
+        # print(pitches_id)
+        print('===============adfadf================')
+        
+        comment=Comment(comment=request.form.get('comment'), pitches_id = pitches_id, users_id=current_user.id)
+        print(comment)
+        print('this is the second =====================')
+
         db.session.add(comment)
         db.session.commit()
-        
-        
-        # id=id
-        # users_id=current_user._get_current_object().id
-        # new_comment=Comment(comment=comment,users_id=users_id,id=1)
-        # comment.save_comment()
-        # db.session.add(comment)
-        # db.session.commit()
-        
-        
-        # comment=Comment(request.form.get('comment'))
-        # return redirect(url_for('main.post_comment', pitches_id=pitches_id))
-        # return redirect(url_for('main.post_comment',_anchor='pickUp', pitches_id=pitch.id))
-        # return render_template('pitches.html')
-        return redirect(url_for('main.goToPitchComments',_anchor='pickUp', ))
+            
+        return redirect(url_for('main.goToPitches'))
 
     title = 'Minute-Wise: Pitches'    
-    return render_template('comments.html', CommentForm=comment_form, title=title)
+    return render_template('comments.html', CommentForm=comment_form, title=title, pitches_id=pitches_id)
 
 # Redirect to comments
 @main.route('/pitchcomments', methods=['GET','POST'])

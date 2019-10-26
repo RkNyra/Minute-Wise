@@ -126,7 +126,7 @@
         <!-- prof-pic -->
 
         {% if user.profile_pic_path %}
-        <img class="rounded-circle"
+        <img class="rounded-circle img-responsive"
           src="{{url_for('static',filename=user.profile_pic_path)}}"
           alt="prof-pic"
           class="img-thumbnail"

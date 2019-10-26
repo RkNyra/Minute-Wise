@@ -17,14 +17,14 @@ def signUp():
     if form.validate_on_submit():  
              
         user = User(username = form.username.data, email = form.email.data, password = form.password.data)
-        
+                
         db.session.add(user)
         db.session.commit()
         
         mail_message("Willkommen to Minute-Wise","email/welcome_user",user.email,user=user)
         
         flash('Sign-up successful! Sign in below')
-        return redirect(url_for('auth.signIn'))
+        return redirect(url_for('auth.signIn',_anchor='loginForm'))
     
     title = "Minute-Wise New Pitcher"   
     return render_template('auth/signUp.html', SignUpForm=form, title=title)
@@ -43,6 +43,7 @@ def signIn():
         user = User.query.filter_by(username = formLogin.username.data).first()
         if user is not None and user.verify_password(formLogin.password.data):
             login_user(user,formLogin.remember.data)
+            
             return redirect(request.args.get('next') or url_for('main.index'))
         flash('Invalid username or password')
         

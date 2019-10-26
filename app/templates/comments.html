@@ -46,8 +46,8 @@
   
               <form class="commentForm"
                 method="post"
-                action="{{url_for('main.goToPitchComments',_anchor='hot')}}">
-                <input type="text" name="comment"/>
+                action="{{url_for('main.post_comment',_anchor='hot',pitches_id=pitches_id)}}">
+                <input type="text" name="comment" required/>
                 <input type="submit" value="submit"/>
               </form>
             </div>
@@ -118,8 +118,8 @@
   
               <form class="commentForm"
                 method="post"
-                action="{{url_for('main.goToPitchComments',_anchor='pickUp')}}">
-                <input type="text" name="comment"/>
+                action="{{url_for('main.post_comment',_anchor='pickUp',pitches_id=pitches_id)}}">
+                <input type="text" name="comment" required/>
                 <input type="submit" value="submit"/>
               </form>
             </div>
@@ -192,8 +192,8 @@
     
                 <form class="commentForm"
                   method="post"
-                  action="{{url_for('main.goToPitchComments',_anchor='lnl')}}">
-                  <input type="text" name="comment"/>
+                  action="{{url_for('main.post_comment',_anchor='lnl',pitches_id=pitches_id)}}">
+                  <input type="text" name="comment" required/>
                   <input type="submit" value="submit"/>
                 </form>
               </div>
@@ -220,5 +220,4 @@
     </div>
   </div>
   
-  {% endblock %}
-  
+  {% endblock %}  
